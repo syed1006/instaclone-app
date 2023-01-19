@@ -1,0 +1,31 @@
+{
+  "user": [
+    {
+      "name": "Mustang",
+      "location": "USA",
+      "likes": 64,
+      "description": "Ford-built means better built.",
+      "PostImage": "images/posts/must.jpg",
+      "profileImage": "images/icons/mustang.png",
+      "date": "12/02/2022"
+    },
+    {
+      "name": "Chevrolet",
+      "location": "Detroit",
+      "likes": 30,
+      "description": "Find New Roads",
+      "PostImage": "images/posts/chevvy.jpg",
+      "profileImage": "images/icons/chevrolet.png",
+      "date": "15/05/2022"
+    },
+    {
+      "name": "Lamborghini",
+      "location": "Italy",
+      "likes": 30,
+      "description": "We are not supercars. We are Lamborghini.",
+      "PostImage": "images/posts/lambo.jpg",
+      "profileImage": "images/icons/lamborghini.png",
+      "date": "10/06/2022"
+    }
+  ]
+}
