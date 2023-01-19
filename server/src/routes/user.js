@@ -9,11 +9,11 @@ dotenv.config();
 const jwtSecret = process.env.JWT_SECRET
 
 router.post('/register', [
-    body('name', "Enter a valid name!!").isAlphanumeric(),
+    body('name', "Enter a valid name!!").isAlpha('en-IN',{ignore: ' '}),
     body('email', "Enter a valid email!!").isEmail(),
     body('password', "Password length needs to be min 5 characters!!").isLength({min: 5})
 ], async (req, res)=>{
-
+    console.log(req.body)
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({
@@ -68,14 +68,14 @@ router.post('/login',[
         let user = await User.findOne({email});
         if (!user) {
             return res.status(400).json({
-                staus: 'Failure',
+                status: 'Failure',
                 message: 'Invalid credentials'
             })
         }
         const result = await bcrypt.compare(password, user.password)
         if (!result) {
             return res.status(400).json({
-                staus: 'Failure',
+                status: 'Failure',
                 message: 'Invalid credentials'
             })
         }

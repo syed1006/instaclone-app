@@ -1,25 +1,52 @@
+import { useContext } from "react";
 import { useState, useEffect } from "react";
-import Header from "../header/header"
+import UserContext from "../../context/UserContext/UserContext";
+import LoginMessage from "../LoginMessage/LoginMessage";
 import Post from "../post/post";
 import './post-view.css';
 const PostView = () => {
-    const [users, setUsers] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const context = useContext(UserContext)
+    const {state:{isLogged}, updateLogged} = context;
+    const url = process.env.REACT_APP_HOST;
+    const token = localStorage.getItem('token');
+    
+    
+    const fetchPosts = async ()=>{
+        try{
+            const response = await fetch(url + '/posts', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': token
+                }
+            })
+            const res = await response.json();
+            console.log(res);
+            setPosts(res.result)
+            updateLogged(true)
+        }
+        catch(e){
+            console.log(e);
+            updateLogged(false)
+        }
+    }
+    
     useEffect(() => {
-        fetch('http://localhost:3004/user')
-            .then((res) => { return res.json() })
-            .then((data) => {
-                setUsers(data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        fetchPosts()
     }, [])
+
+    if(!isLogged || !token || token === undefined){
+        console.log(token, isLogged)
+        return(
+            <LoginMessage/>
+        )
+    }
     return (
         <>
-            <Header />
             <main>
-                {users.map((user, index) => {
-                    return <Post key={index} user={user} />
+                {posts.map((post, index) => {
+                    return <Post key={index} post={post} />
                 })}
             </main>
         </>

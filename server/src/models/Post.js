@@ -7,16 +7,25 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    body: {
+    description: {
         type: String,
         required: true
     },
-    image:{
-        data: Buffer,
-        contentType: String
+    PostImage:{
+        type: String,
+        required: true
+    },
+    likes:{
+        type: Number,
+        default: 0
+    },
+    location:{
+        type: String,
+        default: 'Restricted'
     },
     user: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     }
 }, {timestamps: true});
 
