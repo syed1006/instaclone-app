@@ -1,10 +1,11 @@
 .img-container{
     width: 50vw;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .img-container> img{
@@ -38,16 +39,12 @@
     margin-right: 20px;
 }
 
-/* .text>a {
-    
-} */
-/* .text>a:hover{
-    
-} */
 
 .container{
     display: flex;
     align-items: center;
+    height: calc(100vh - 110px);
+    box-sizing: border-box;
 }
 
 .input-container{
@@ -99,4 +96,25 @@
 }
 .red{
     color: red;
+}
+
+@media screen and (max-width: 400px){
+    .container{
+        display: block;
+        height: auto;
+        overflow: scroll;
+    }
+    .img-container{
+        width: 100%;
+        height: fit-content;
+    }
+    .text{
+        width: 100%;
+    }
+    .form-container{
+        width: 95%;
+    }
+    .input-container>label{
+        width:30%
+    }
 }

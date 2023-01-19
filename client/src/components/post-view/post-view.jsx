@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import UserContext from "../../context/UserContext/UserContext";
-import Header from "../header/header"
 import LoginMessage from "../LoginMessage/LoginMessage";
 import Post from "../post/post";
 import './post-view.css';
@@ -45,7 +44,6 @@ const PostView = () => {
     }
     return (
         <>
-            <Header />
             <main>
                 {posts.map((post, index) => {
                     return <Post key={index} post={post} />

@@ -8,6 +8,7 @@
     box-shadow: 0 0 1px;
     border-radius: 10px;
     margin: 10px 0px;
+    min-width: 350px;
 }
 .post-header{
     display: flex;
@@ -27,8 +28,17 @@
     box-sizing: border-box;
     background: transparent;
 }
+.post-image{
+    height: 20vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
 .post-image > img{
-    width: 100%
+    width: 100%;
+    
 }
 .plain-heart{
     width: 30px;

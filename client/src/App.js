@@ -5,12 +5,14 @@ import Login from './components/login/login';
 import SignUp from './components/signup/SignUp';
 import UserState from './context/UserContext/UserState';
 import NewPost from './components/NewPost/NewPost';
+import Header from './components/header/header';
 
 function App() {
 
     return (
         <UserState>
             <BrowserRouter>
+            <Header/>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
