@@ -1,0 +1,39 @@
+.logo{
+    width: 50px;
+    height: 50px;
+    background-image: url(../../../public/images/icons/instagram.png);
+    background-size: cover;
+}
+.logo-title{
+    display: flex;
+    
+}
+.logo-title> h1{
+    margin-left: 10px;
+    background: linear-gradient(to right, #f32170,
+    #ff6b08, #cf23cf, #eedd44);
+    color: transparent;
+    background-clip: text;
+}
+.launch-cam{
+    border: none;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    background-image: url(../../../public/images/icons/camera.png);
+    background-size: cover;
+}
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0px 100px;
+    height: 100px;
+    align-items: center;
+    border-bottom: 3px solid green;
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
