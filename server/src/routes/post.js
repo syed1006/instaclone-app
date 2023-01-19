@@ -2,13 +2,15 @@ const router = require('express').Router();
 const Post = require('../models/Post');
 const { body, validationResult } = require('express-validator');
 const upload = require('../middleware/handleImages')
+const fs = require('fs');
+const path = require('path');
 
 router.get('/posts',async (req,res)=>{
     const {page = 1, search} = req.query;
     try{
         let data;
-        if(search)data = (await Post.find({"title" : {$regex : search, $options: '-i'}}).skip((page-1) * 5).limit(5));
-        else data = (await Post.find().skip((page-1) * 5).limit(5));
+        if(search)data = (await Post.find({"title" : {$regex : search, $options: '-i'}}).sort({'createdAt': -1}).populate('user', 'name').skip((page-1) * 5).limit(5));
+        else data = (await Post.find().sort({'createdAt': -1}).populate('user', 'name').skip((page-1) * 5).limit(5));
         res.status(200).json({
             status: 'Success',
             result: [...data]
@@ -24,8 +26,9 @@ router.get('/posts',async (req,res)=>{
 
 router.post('/posts',upload, [
     body('title').isLength({min: 5}),
-    body('body').isLength({min: 5})
+    body('description').isLength({min: 5})
 ], (req, res, next) => {
+    console.log(req.body)
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({
@@ -35,11 +38,8 @@ router.post('/posts',upload, [
     }
     const obj = {
         title: req.body.title,
-        body: req.body.body,
-        image: {
-            data: req.file.filename,
-            contentType: 'image/png'
-        },
+        description: req.body.description,
+        PostImage: req.file.filename,
         user: req.user
     }
     Post.create(obj, (err, item) => {
@@ -50,7 +50,8 @@ router.post('/posts',upload, [
             item.save();
             res.status(201).json({
                 status: 'Success',
-                message: 'Post created successfully'
+                message: 'Post created successfully',
+                item
             })
         }
     });

@@ -2,30 +2,27 @@
 import { useState } from 'react'
 import './post.css'
 
-const Post = (props)=>{
-    let {user} = props
-    const [heart , setHeart] = useState({display: true, count:user.likes});
+const Post = ({post})=>{
+    const url = process.env.REACT_APP_HOST;
+    const [heart , setHeart] = useState({display: true, count:post.likes});
     function handleClick(){
         if(heart.display){
-            setHeart({display:false, count:user.likes+1});
+            setHeart({display:false, count:post.likes+1});
         }else{
-            setHeart({display: true, count:user.likes})
+            setHeart({display: true, count:post.likes})
         }
     }
     return(
-        user && <div className="post-container">
+        post && <div className="post-container">
             <div className="post-header">
-                <div className="profile-picture">
-                    <img src={user.profileImage} alt={` of ${user.name}`} />
-                    <div>
-                        <h4>{user.name}</h4>
-                        <p>{user.location}</p>
-                    </div>
+                <div className="user-details">
+                    <h4>{post.user?.name}</h4>
+                    <p>{post.location}</p>
                 </div>
                 <div><button className='post-btn'>...</button></div>
             </div>
             <div className="post-image">
-                <img src={user.PostImage} alt={` of ${user.name}`} />
+                <img src={url + '/uploads/' + post.PostImage} alt={` of ${post.user?.name}`} />
             </div>
             <div className="post-likes">
                 <div className="likes">
@@ -38,9 +35,9 @@ const Post = (props)=>{
                     </div>
                     <p>{heart.count} likes</p>
                 </div>
-                <p>{user.date}</p>
+                <p>{post.createdAt.split('T')[0]}</p>
             </div>
-            <h2 className="description">{user.description}</h2>
+            <h2 className="description">{post.description}</h2>
         </div>
     )
 }

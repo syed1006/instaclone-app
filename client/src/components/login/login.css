@@ -47,22 +47,27 @@
 
 .container{
     display: flex;
-
+    align-items: center;
 }
 
 .input-container{
     margin: 5px 0px;
     font-size: 1.5rem;
+    width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: flex-start;
 }
 .input-container>label{
     display: inline-block;
-    width: 120px;
+    width: 40%;
 }
 .input-container>input{
     padding: 5px;
     box-sizing: border-box;
+}
+.form-container{
+    width: 50%;
+    margin: 0 auto;
 }
 .login{
     text-decoration: none;
