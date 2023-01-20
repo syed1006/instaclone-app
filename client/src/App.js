@@ -18,7 +18,6 @@ function App() {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/posts" element={<PostView />} />
                     <Route path="/newpost" element={<NewPost/>}/>
-                    {/* <Route path="google.com" component={()=>{window.location.href = 'https://www.wikipedia.com';return null}}/> */}
                 </Routes>
             </BrowserRouter>
         </UserState>

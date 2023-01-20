@@ -1,4 +1,4 @@
-.img-container{
+.img-container {
     width: 50vw;
     height: 100%;
     overflow: hidden;
@@ -8,11 +8,11 @@
     box-sizing: border-box;
 }
 
-.img-container> img{
+.img-container>img {
     width: 100%;
 }
 
-.text{
+.text {
     width: 50vw;
     display: flex;
     flex-direction: column;
@@ -20,16 +20,16 @@
     align-items: center;
 }
 
-.text > h1{
+.text>h1 {
     font-size: 3rem;
     background: linear-gradient(45deg, #f32170,
-    #ff6b08, #cf23cf, #eedd44);
+            #ff6b08, #cf23cf, #eedd44);
     color: transparent;
     background-clip: text;
     margin-bottom: 30px;
 }
 
-.text>h1>span{
+.text>h1>span {
     display: inline-block;
     background-image: url(../../../public/images/icons/instagram.png);
     background-repeat: no-repeat;
@@ -40,47 +40,52 @@
 }
 
 
-.container{
+.container {
     display: flex;
     align-items: center;
     height: calc(100vh - 110px);
     box-sizing: border-box;
-    margin-bottom: 50px;
 }
 
-.input-container{
+.input-container {
     margin: 5px 0px;
     font-size: 1.5rem;
     width: 100%;
     display: flex;
     justify-content: flex-start;
 }
-.input-container>label{
+
+.input-container>label {
     display: inline-block;
     width: 40%;
 }
-.input-container>input{
+
+.input-container>input {
     padding: 5px;
     box-sizing: border-box;
 }
-.form-container{
+
+.form-container {
     width: 50%;
     margin: 0 auto;
 }
-.login{
+
+.login {
     text-decoration: none;
     font-size: 1rem;
-    padding:10px 20px;
+    padding: 10px 20px;
     border: 1px solid black;
     border-radius: 10px;
     margin: 10px 0;
 }
-.login:hover{
+
+.login:hover {
     background-color: darkblue;
     color: white;
 }
 
-.show-password, .hide-password{
+.show-password,
+.hide-password {
     width: 30px;
     height: 30px;
     border: none;
@@ -89,33 +94,41 @@
     background-size: cover;
     margin-left: 10px;
 }
-.show-password{
+
+.show-password {
     background-image: url(../../../public/images/icons/show.png);
 }
-.hide-password{
+
+.hide-password {
     background-image: url(../../../public/images/icons/eye.png);
 }
-.red{
+
+.red {
     color: red;
 }
 
-@media screen and (max-width: 400px){
-    .container{
+@media screen and (max-width: 400px) {
+    .container {
         display: block;
         height: auto;
         overflow: scroll;
+        margin-bottom: 50px;
     }
-    .img-container{
+
+    .img-container {
         width: 100%;
         height: fit-content;
     }
-    .text{
+
+    .text {
         width: 100%;
     }
-    .form-container{
+
+    .form-container {
         width: 95%;
     }
-    .input-container>label{
-        width:30%
+
+    .input-container>label {
+        width: 30%
     }
 }
