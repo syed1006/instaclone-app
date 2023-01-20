@@ -23,7 +23,6 @@ const PostView = () => {
                 }
             })
             const res = await response.json();
-            console.log(res);
             setState({posts: state.posts.concat(res.result), page:state.page+1, totalResults: res.totalResults})
             updateLogged(true)
         }
@@ -38,7 +37,6 @@ const PostView = () => {
     }, [])
 
     if (!isLogged || !token || token === undefined) {
-        console.log(token, isLogged)
         return (
             <LoginMessage />
         )

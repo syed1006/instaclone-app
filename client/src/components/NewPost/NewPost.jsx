@@ -34,7 +34,6 @@ const NewPost = () => {
                 body: data
             })
             const res = await response.json();
-            console.log(res);
             if(res.status === 'Success')navigate('/posts')
             else{
                 console.log(res)
