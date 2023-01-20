@@ -43,6 +43,11 @@ const PostView = () => {
             <LoginMessage />
         )
     }
+    if(state.posts.length === 0){
+        return(
+            <h1 style={{color:'green', textAlign:'center'}}>No posts to show, create one.</h1>
+        )
+    }
     return (
         <>
             <main>
