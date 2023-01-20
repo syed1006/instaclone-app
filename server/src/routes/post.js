@@ -47,6 +47,7 @@ router.post('/posts',upload, [
     const obj = {
         title: req.body.title,
         description: req.body.description,
+        location: req.body.location,
         PostImage: req.file.filename,
         user: req.user
     }
