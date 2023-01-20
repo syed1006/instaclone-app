@@ -37,12 +37,13 @@ const NewPost = () => {
             console.log(res);
             if(res.status === 'Success')navigate('/posts')
             else{
+                console.log(res)
                 updateData({...formData, error: true});
             }
         }
         catch (e) {
             updateData({...formData, error: true})
-            console.log(e.message)
+            console.log(e)
         }
     }
     const handleClick = ()=>{
