@@ -9,10 +9,18 @@ router.get('/posts',async (req,res)=>{
     const {page = 1, search} = req.query;
     try{
         let data;
-        if(search)data = (await Post.find({"title" : {$regex : search, $options: '-i'}}).sort({'createdAt': -1}).populate('user', 'name').skip((page-1) * 5).limit(5));
-        else data = (await Post.find().sort({'createdAt': -1}).populate('user', 'name').skip((page-1) * 5).limit(5));
+        let totalResults;
+        if(search){
+            totalResults = await Post.find({"title" : {$regex : search, $options: '-i'}}).count()
+            data = (await Post.find({"title" : {$regex : search, $options: '-i'}}).sort({'createdAt': -1}).populate('user', 'name').skip((page-1) * 5).limit(5));
+        }
+        else {
+            totalResults = await Post.find().count()
+            data = (await Post.find().sort({'createdAt': -1}).populate('user', 'name').skip((page-1) * 5).limit(5));
+        }
         res.status(200).json({
             status: 'Success',
+            totalResults,
             result: [...data]
         });
     }

@@ -40,5 +40,17 @@ input[name='description']{
 }
 #post-btn{
     grid-row: 4/5;
-    grid-column: 3/4;
+    grid-column: 5/6;
+}
+#discard-btn{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+.preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.preview> img{
+    width:200px;
 }
