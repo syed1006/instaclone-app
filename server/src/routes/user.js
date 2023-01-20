@@ -69,7 +69,7 @@ router.post('/login',[
         if (!user) {
             return res.status(400).json({
                 status: 'Failure',
-                message: 'Invalid credentials'
+                message: "User doesn't exist please signup!!"
             })
         }
         const result = await bcrypt.compare(password, user.password)

@@ -4,12 +4,19 @@ import './post.css'
 
 const Post = ({post})=>{
     const url = process.env.REACT_APP_HOST;
-    const [heart , setHeart] = useState({display: true, count:post.likes});
+    const [heart , setHeart] = useState({display: true, count:post.likes, limit:101});
     function handleClick(){
         if(heart.display){
             setHeart({display:false, count:post.likes+1});
         }else{
             setHeart({display: true, count:post.likes})
+        }
+    }
+    function changeLimit(){
+        if(heart.limit === 101){
+            setHeart({...heart, limit:-1})
+        }else{
+            setHeart({...heart, limit:101})
         }
     }
     return(
@@ -37,7 +44,10 @@ const Post = ({post})=>{
                 </div>
                 <p>{post.createdAt.split('T')[0]}</p>
             </div>
-            <h2 className="description">{post.description}</h2>
+            <div className="description">
+                <h2 >{post.title}</h2>
+                <p onClick={changeLimit} style={{cursor:'pointer'}}>{post.description.length > 100 ? post.description.slice(0, heart.limit) + '...' : post.description}</p>
+            </div>
         </div>
     )
 }
