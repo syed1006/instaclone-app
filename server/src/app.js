@@ -21,7 +21,7 @@ const userRoute = require('./routes/user');
 //Router MIddlewares
 app.use('/', userRoute);
 const fetchUser = require('./middleware/fetchUser');
-app.use('/', fetchUser, postRoute);
+app.use('/posts', fetchUser, postRoute);
 
 
 module.exports = app;
