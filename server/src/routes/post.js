@@ -5,7 +5,7 @@ const upload = require('../middleware/handleImages')
 const fs = require('fs');
 const path = require('path');
 
-router.get('/posts',async (req,res)=>{
+router.get('/',async (req,res)=>{
     const {page = 1, search} = req.query;
     try{
         let data;
@@ -32,7 +32,7 @@ router.get('/posts',async (req,res)=>{
     }
 })
 
-router.post('/posts',upload, [
+router.post('/',upload, [
     body('title').isLength({min: 5}),
     body('description').isLength({min: 5})
 ], (req, res, next) => {
@@ -66,7 +66,7 @@ router.post('/posts',upload, [
     });
 });
 
-router.put('/posts/:id', upload, async (req, res)=>{
+router.put('/:id', upload, async (req, res)=>{
     console.log(req.body)
     try{
         let post = await Post.findOne({ "_id": req.params.id});
@@ -88,7 +88,7 @@ router.put('/posts/:id', upload, async (req, res)=>{
         })
     }
 })
-router.delete('/posts/:id', async (req, res)=>{
+router.delete('/:id', async (req, res)=>{
     try{
         let post = await Post.findOne({ "_id": req.params.id});
         if(post.user.toString() != req.user){
