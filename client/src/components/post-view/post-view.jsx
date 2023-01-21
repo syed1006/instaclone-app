@@ -8,11 +8,10 @@ import './post-view.css';
 const PostView = () => {
     const [state, setState] = useState({totalResults: 0, posts: [], page:1});
     const context = useContext(UserContext)
-    const { state: { isLogged }, updateLogged } = context;
+    const {updateLogged } = context;
     const url = process.env.REACT_APP_HOST;
     const token = localStorage.getItem('token');
-
-
+    
     const fetchPosts = async () => {
         try {
             const response = await fetch(url + `/posts?page=${state.page}`, {
@@ -23,12 +22,15 @@ const PostView = () => {
                 }
             })
             const res = await response.json();
+            if(res.status === 'success')updateLogged(true)
+            if(res.message === "jwt expired"){
+                updateLogged(false);
+                localStorage.removeItem('token');
+            }
             setState({posts: state.posts.concat(res.result), page:state.page+1, totalResults: res.totalResults})
-            updateLogged(true)
         }
         catch (e) {
             console.log(e);
-            updateLogged(false)
         }
     }
 
@@ -36,7 +38,7 @@ const PostView = () => {
         fetchPosts()
     }, [])
 
-    if (!isLogged || !token || token === undefined) {
+    if (!token || token === undefined) {
         return (
             <LoginMessage />
         )
