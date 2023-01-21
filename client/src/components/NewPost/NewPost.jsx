@@ -12,7 +12,7 @@ const NewPost = () => {
     const fileInput = useRef()
     const navigate = useNavigate()
     const context = useContext(UserContext)
-    const {state:{isLogged}} = context;
+    const { updateLogged} = context;
     const token = localStorage.getItem('token');
     async function createPost(e) {
         e.preventDefault();
@@ -35,6 +35,10 @@ const NewPost = () => {
             })
             const res = await response.json();
             if(res.status === 'Success')navigate('/posts')
+            if(res.message === "jwt expired"){
+                updateLogged(false);
+                localStorage.removeItem('token')
+            }
             else{
                 console.log(res)
                 updateData({...formData, error: true});
@@ -53,8 +57,8 @@ const NewPost = () => {
         e.preventDefault();
         navigate('/posts')
     }
-    if(!isLogged || !token || token === undefined){
-        console.log(token, isLogged)
+    if(!token || token === undefined){
+        console.log(token)
         return(
             <LoginMessage/>
         )
